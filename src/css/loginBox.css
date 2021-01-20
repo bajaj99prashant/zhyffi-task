@@ -1,0 +1,39 @@
+.image-box {
+  width: 50%;
+  height: 100%;
+  color: white;
+  background-image: url("../img/login-main.webp");
+  background-size: cover;
+  background-position: bottom;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+  width: 80%;
+  position: relative;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-family: "MontBold";
+}
+
+.sub-head {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: white;
+}
+
+span {
+  color: rgb(255, 209, 94);
+  font-family: "MontBold";
+}
+
+@media (max-width: 568px) {
+  .image-box {
+    display: none;
+  }
+}

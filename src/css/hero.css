@@ -1,0 +1,50 @@
+.container {
+  width: 85%;
+  display: flex;
+  align-items: center;
+}
+
+.hero {
+  padding: 1rem auto;
+}
+
+.main-head {
+  margin-top: 2rem;
+}
+
+.flex-item {
+  width: 50%;
+}
+
+.flex-item > h1 {
+  font-size: 1.8rem;
+}
+
+.flex-item > p {
+  margin-top: 1rem;
+  font-family: "MontReg";
+}
+
+.hero-image {
+  width: 80%;
+  margin-top: 2rem;
+  margin-left: 10%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .flex-item {
+    width: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    margin: 0;
+    margin-top: 2rem;
+  }
+}

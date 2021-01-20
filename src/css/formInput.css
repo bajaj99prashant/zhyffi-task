@@ -1,0 +1,30 @@
+label {
+  width: 100%;
+  font-size: 0.7rem;
+  padding: 4px auto;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  margin-top: 0.5rem;
+  padding: 0.4rem auto;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 1rem;
+  outline: none;
+}
+
+.error {
+  border-bottom: 1px solid #d9534f;
+}
+
+.error-message {
+  color: #d9534f;
+  font-size: 0.7rem;
+}
+
+.form-input {
+  margin: 2rem auto;
+  text-align: left;
+}
