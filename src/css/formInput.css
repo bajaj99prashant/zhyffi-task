@@ -22,6 +22,7 @@ input {
 .error-message {
   color: #d9534f;
   font-size: 0.7rem;
+  font-family: "MontReg";
 }
 
 .form-input {

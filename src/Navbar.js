@@ -2,7 +2,7 @@ import { Link } from "@reach/router";
 import React, { useState } from "react";
 import "./css/navbar.css";
 
-function Navbar() {
+function Navbar({ name }) {
   const [clicked, setClicked] = useState(false);
   const handleMenu = () => {
     setClicked(!clicked);
@@ -22,9 +22,20 @@ function Navbar() {
           <div className="upper-nav-right">
             <span>
               <img src="icons/pin.svg" className="location" alt="location" />{" "}
-              Banglore
+              Hyderabad
             </span>
-            <img src="icons/profile.jpg" className="profile" alt="profile" />
+            {name !== null ? (
+              <span>
+                <img
+                  src="icons/profile.jpg"
+                  className="location"
+                  alt="profile"
+                />
+                {name}
+              </span>
+            ) : (
+              <img src="icons/profile.jpg" className="profile" alt="profile" />
+            )}
             <img src="icons/like.svg" alt="like" />
             <img src="icons/chat.svg" alt="chat" />
           </div>
@@ -67,12 +78,12 @@ function Navbar() {
       <div className={clicked ? "show" : "hidden"}>
         <ul className="list-res">
           <li className="flex list-item-flex">
-            <img src="icons/profile.jpg" alt="profile" />
-            <span>profile</span>
+            <img src="icons/profile.jpg" className="profile" alt="profile" />
+            <span>{name ? name : "profile"}</span>
           </li>
           <li>
             <span className="flex list-item-flex">
-              <img src="icons/pin.svg" alt="location" /> Banglore
+              <img src="icons/pin.svg" alt="location" /> Hyderabad
             </span>
           </li>
 

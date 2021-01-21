@@ -51,19 +51,24 @@ function SignUp() {
     e.preventDefault();
 
     if (errorValidation()) {
-      const data = {
-        name: name.value.split(" ").join(""),
-        email: email.value,
-        password: password.value,
-        primary_img: file.image,
-      };
-
-      console.log(data);
+      // const data = {
+      //   name: name.value,
+      //   email: email.value,
+      //   password: password.value,
+      //   primary_img: file.image,
+      // };
+      console.log("e.target", e.target);
+      const formData = new FormData(e.target);
+      // formData.set("name", name.value);
+      // formData.set("email", email.value);
+      // formData.set("password", password.value);
+      // formData.set("primary_img", file.image);
+      console.log("formData", formData);
 
       fetch("http://localhost:5000/register", {
         method: "POST",
         headers: { "Content-Type": "multipart/form-data" },
-        body: JSON.stringify(data),
+        body: formData,
       })
         .then((response) => response.json())
         .then((response) => console.log(response));
@@ -106,7 +111,7 @@ function SignUp() {
         </FormInput>
 
         <div className="form-input">
-          <label htmlFor="image">Image</label>
+          <label htmlFor="primary_img">Image</label>
           <input
             className="input-file"
             type="file"
@@ -114,6 +119,8 @@ function SignUp() {
             onChange={handleFileInput}
           />
         </div>
+
+        <p className="error-message"></p>
 
         <button
           type="submit"
