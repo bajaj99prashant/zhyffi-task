@@ -9,8 +9,8 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Login path="/" />
-        <SignUp path="/register" />
+        <SignUp path="/" />
+        <Login path="/login" />
         <Home path="/home" />
       </Router>
     </div>

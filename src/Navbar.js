@@ -47,7 +47,9 @@ function Navbar({ name }) {
       >
         <div className="container flex lower-container">
           <div className="flex lower-left">
-            <img src="icons/zifi.png" alt="zifi-logo" />
+            <Link to="/login">
+              <img src="icons/zifi.png" alt="zifi-logo" />
+            </Link>
             <input type="text" placeholder="search" />
             <div
               className="menu-icon"

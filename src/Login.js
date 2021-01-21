@@ -1,5 +1,5 @@
 import { Link, navigate } from "@reach/router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInput from "./FormInput";
 import { emailValidation } from "./formValidation";
 import LoginLayout from "./LoginLayout";
@@ -8,6 +8,13 @@ import { useStateValue } from "./DataLayer";
 function Login() {
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
+
+  useEffect(() => {
+    if (state.logged === true) {
+      navigate("/home");
+    }
+  }, []);
+
   const [email, setEmail] = useState({
     value: "",
     error: "",
@@ -49,7 +56,6 @@ function Login() {
         .then((res) => res.json())
         .then((response) => {
           if (response.success === true) {
-            console.log("in login");
             const data = {
               email: email.value,
             };
@@ -66,7 +72,6 @@ function Login() {
         })
         .then((res) => res.json())
         .then((response) => {
-          console.log(response);
           dispatch({
             type: "SESSION_CONFIRMED",
             name: response.name,
@@ -85,13 +90,11 @@ function Login() {
     }
   };
 
-  console.log("state", state);
-
   return (
     <LoginLayout>
       <h5 className="log-head">Log In</h5>
       <p>
-        New to this site? <Link to="/register">Sign Up</Link>
+        New to this site? <Link to="/">Sign Up</Link>
       </p>
       <form onSubmit={(e) => handleLogin(e)}>
         <FormInput

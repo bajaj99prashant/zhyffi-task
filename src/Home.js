@@ -15,7 +15,7 @@ function Home() {
       state.name === null ||
       state.img === null
     ) {
-      navigate("/");
+      navigate("/login");
     }
   }, []);
 

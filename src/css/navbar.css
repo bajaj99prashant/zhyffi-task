@@ -71,8 +71,9 @@ img {
   border-bottom: 1px solid lightgrey;
 }
 
-.lower-left > img {
+.lower-left > a > img {
   margin-bottom: 0;
+  margin-top: 4px;
   height: 40px;
 }
 

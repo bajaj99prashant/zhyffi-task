@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
+import { Link, navigate } from "@reach/router";
 import LoginLayout from "./LoginLayout";
 import FormInput from "./FormInput";
 import { emailValidation } from "./formValidation";
@@ -17,10 +17,12 @@ function SignUp() {
     value: "",
     error: "",
   });
+  const [error, setError] = useState("");
   // eslint-disable-next-line
   const [file, setFile] = useState(null);
 
   const ManageInput = (e, setInput, type) => {
+    setError("");
     if (type === "email" && emailValidation(e.target.value) !== "OK") {
       setInput({ value: e.target.vale, error: "fill your email properly" });
     } else if (e.target.value !== "") {
@@ -49,29 +51,30 @@ function SignUp() {
 
   const handleSignup = (e) => {
     e.preventDefault();
+    setError("");
 
     if (errorValidation()) {
-      // const data = {
-      //   name: name.value,
-      //   email: email.value,
-      //   password: password.value,
-      //   primary_img: file.image,
-      // };
-      console.log("e.target", e.target);
       const formData = new FormData(e.target);
-      // formData.set("name", name.value);
-      // formData.set("email", email.value);
-      // formData.set("password", password.value);
-      // formData.set("primary_img", file.image);
-      console.log("formData", formData);
+      formData.append("primary_img", file.image);
 
       fetch("http://localhost:5000/register", {
         method: "POST",
-        headers: { "Content-Type": "multipart/form-data" },
         body: formData,
       })
         .then((response) => response.json())
-        .then((response) => console.log(response));
+        .then((response) => {
+          if (response.success === true) {
+            navigate("/login");
+          } else {
+            setError(response.msg);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setError("there was some error");
+        });
+    } else {
+      setError("fill all the fields correctly");
     }
   };
 
@@ -79,9 +82,9 @@ function SignUp() {
     <LoginLayout>
       <h5 className="log-head">Sign Up</h5>
       <p>
-        Already have account? <Link to="/">Login</Link>
+        Already have account? <Link to="/login">Login</Link>
       </p>
-      <form onSubmit={(e) => handleSignup(e)}>
+      <form onSubmit={(e) => handleSignup(e)} encType="multipart/form-data">
         <FormInput
           name="name"
           type="name"
@@ -120,7 +123,7 @@ function SignUp() {
           />
         </div>
 
-        <p className="error-message"></p>
+        <p className="error-message">{error}</p>
 
         <button
           type="submit"
